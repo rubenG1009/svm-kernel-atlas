@@ -1,0 +1,230 @@
+{
+  "seed": 42,
+  "samples_per_dataset": 500,
+  "test_fraction": 0.3,
+  "parameters": {
+    "c": 1.0,
+    "gamma": 1.0,
+    "degree": 3
+  },
+  "baseline": {
+    "moons": {
+      "linear": {
+        "accuracy_train": 0.8571428571428571,
+        "accuracy_test": 0.8533333333333334,
+        "support_vectors": 110
+      },
+      "rbf": {
+        "accuracy_train": 0.9657142857142857,
+        "accuracy_test": 0.9666666666666667,
+        "support_vectors": 74
+      },
+      "poly": {
+        "accuracy_train": 0.8514285714285714,
+        "accuracy_test": 0.86,
+        "support_vectors": 96
+      },
+      "laplacian": {
+        "accuracy_train": 0.9742857142857143,
+        "accuracy_test": 0.9533333333333334,
+        "support_vectors": 115
+      },
+      "rational_quadratic": {
+        "accuracy_train": 0.9685714285714285,
+        "accuracy_test": 0.9666666666666667,
+        "support_vectors": 78
+      },
+      "cosine": {
+        "accuracy_train": 0.8571428571428571,
+        "accuracy_test": 0.8533333333333334,
+        "support_vectors": 130
+      }
+    },
+    "circles": {
+      "linear": {
+        "accuracy_train": 0.6,
+        "accuracy_test": 0.58,
+        "support_vectors": 348
+      },
+      "rbf": {
+        "accuracy_train": 0.98,
+        "accuracy_test": 0.9666666666666667,
+        "support_vectors": 60
+      },
+      "poly": {
+        "accuracy_train": 0.6685714285714286,
+        "accuracy_test": 0.6266666666666667,
+        "support_vectors": 340
+      },
+      "laplacian": {
+        "accuracy_train": 0.9942857142857143,
+        "accuracy_test": 0.9666666666666667,
+        "support_vectors": 90
+      },
+      "rational_quadratic": {
+        "accuracy_train": 0.9828571428571429,
+        "accuracy_test": 0.9666666666666667,
+        "support_vectors": 68
+      },
+      "cosine": {
+        "accuracy_train": 0.5057142857142857,
+        "accuracy_test": 0.4866666666666667,
+        "support_vectors": 350
+      }
+    }
+  },
+  "sweep": {
+    "parameter": "gamma",
+    "values": [
+      0.1,
+      1.0,
+      10.0
+    ],
+    "results": {
+      "rbf": {
+        "moons": {
+          "0.1": {
+            "accuracy_train": 0.8628571428571429,
+            "accuracy_test": 0.8733333333333333,
+            "support_vectors": 124
+          },
+          "1.0": {
+            "accuracy_train": 0.9657142857142857,
+            "accuracy_test": 0.9666666666666667,
+            "support_vectors": 74
+          },
+          "10.0": {
+            "accuracy_train": 0.9771428571428571,
+            "accuracy_test": 0.9533333333333334,
+            "support_vectors": 155
+          }
+        },
+        "circles": {
+          "0.1": {
+            "accuracy_train": 0.98,
+            "accuracy_test": 0.98,
+            "support_vectors": 122
+          },
+          "1.0": {
+            "accuracy_train": 0.98,
+            "accuracy_test": 0.9666666666666667,
+            "support_vectors": 60
+          },
+          "10.0": {
+            "accuracy_train": 0.9942857142857143,
+            "accuracy_test": 0.98,
+            "support_vectors": 150
+          }
+        }
+      },
+      "poly": {
+        "moons": {
+          "0.1": {
+            "accuracy_train": 0.8657142857142858,
+            "accuracy_test": 0.8266666666666667,
+            "support_vectors": 258
+          },
+          "1.0": {
+            "accuracy_train": 0.8514285714285714,
+            "accuracy_test": 0.86,
+            "support_vectors": 96
+          },
+          "10.0": {
+            "accuracy_train": 0.8571428571428571,
+            "accuracy_test": 0.8533333333333334,
+            "support_vectors": 89
+          }
+        },
+        "circles": {
+          "0.1": {
+            "accuracy_train": 0.6,
+            "accuracy_test": 0.5866666666666667,
+            "support_vectors": 350
+          },
+          "1.0": {
+            "accuracy_train": 0.6685714285714286,
+            "accuracy_test": 0.6266666666666667,
+            "support_vectors": 340
+          },
+          "10.0": {
+            "accuracy_train": 0.6685714285714286,
+            "accuracy_test": 0.6266666666666667,
+            "support_vectors": 340
+          }
+        }
+      },
+      "laplacian": {
+        "moons": {
+          "0.1": {
+            "accuracy_train": 0.9457142857142857,
+            "accuracy_test": 0.9333333333333333,
+            "support_vectors": 131
+          },
+          "1.0": {
+            "accuracy_train": 0.9742857142857143,
+            "accuracy_test": 0.9533333333333334,
+            "support_vectors": 115
+          },
+          "10.0": {
+            "accuracy_train": 1.0,
+            "accuracy_test": 0.9466666666666667,
+            "support_vectors": 350
+          }
+        },
+        "circles": {
+          "0.1": {
+            "accuracy_train": 0.9685714285714285,
+            "accuracy_test": 0.98,
+            "support_vectors": 146
+          },
+          "1.0": {
+            "accuracy_train": 0.9942857142857143,
+            "accuracy_test": 0.9666666666666667,
+            "support_vectors": 90
+          },
+          "10.0": {
+            "accuracy_train": 1.0,
+            "accuracy_test": 0.9666666666666667,
+            "support_vectors": 350
+          }
+        }
+      },
+      "rational_quadratic": {
+        "moons": {
+          "0.1": {
+            "accuracy_train": 0.8771428571428571,
+            "accuracy_test": 0.8866666666666667,
+            "support_vectors": 122
+          },
+          "1.0": {
+            "accuracy_train": 0.9685714285714285,
+            "accuracy_test": 0.9666666666666667,
+            "support_vectors": 78
+          },
+          "10.0": {
+            "accuracy_train": 0.9742857142857143,
+            "accuracy_test": 0.9533333333333334,
+            "support_vectors": 158
+          }
+        },
+        "circles": {
+          "0.1": {
+            "accuracy_train": 0.9771428571428571,
+            "accuracy_test": 0.9733333333333334,
+            "support_vectors": 120
+          },
+          "1.0": {
+            "accuracy_train": 0.9828571428571429,
+            "accuracy_test": 0.9666666666666667,
+            "support_vectors": 68
+          },
+          "10.0": {
+            "accuracy_train": 0.9942857142857143,
+            "accuracy_test": 0.9733333333333334,
+            "support_vectors": 145
+          }
+        }
+      }
+    }
+  }
+}
