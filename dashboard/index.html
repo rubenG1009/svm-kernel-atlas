@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f3f0e8">
+  <meta name="theme-color" content="#101b2d">
   <meta name="description" content="Explore how SVM kernels change decision surfaces on synthetic circles and moons. Rotate the 3D model and compare held-out results.">
   <title>SVM Decision Surface Lab · Rubén García</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -26,10 +26,11 @@
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <div class="eyebrow"><span class="eyebrow-line"></span> AN INTERACTIVE MODEL STUDY <span class="hero-number">/ 001</span></div>
-          <h1 id="hero-title">Where does the<br><em>boundary bend?</em></h1>
-          <p>Look past the accuracy score. Turn the surface, change the kernel, and see how the same points create a different decision.</p>
-          <div class="hero-meta"><span><b>02</b> synthetic datasets</span><span><b>06</b> kernel families</span><span><b>01</b> fixed split</span></div>
+          <p class="hero-intro">An interactive guide to support vector machines</p>
+          <h1 id="hero-title">One dataset.<br><em>Six kernels.</em></h1>
+          <p>Explore how six SVM kernels classify the same points. Rotate the decision surface, change the model and compare the results.</p>
+          <a class="hero-action" href="#explore">Start exploring <span aria-hidden="true">↓</span></a>
+          <div class="hero-meta"><span><b>2</b> datasets</span><span><b>6</b> kernels</span><span><b>1</b> fixed split</span></div>
         </div>
         <figure class="hero-art" aria-label="Actual zero-score boundary and a sample of points from the circles RBF model"><div class="hero-art-top"><span>FIG. 01</span><span>RBF / CIRCLES</span></div><svg id="hero-plot" viewBox="0 0 440 320" role="img" aria-label="Circular SVM boundary among synthetic points"></svg><figcaption><span>Decision boundary at score = 0</span><span>γ = 1.0</span></figcaption></figure>
       </section>
