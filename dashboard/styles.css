@@ -1,3 +1,5 @@
+/* Atkinson Hyperlegible Next (SIL OFL 1.1, fonts/OFL.txt): letterforms and numerals built to be told apart, for a page read through its figures. */
+@font-face { font-family: "Atkinson Hyperlegible Next"; src: url("fonts/AtkinsonHyperlegibleNext-latin.woff2") format("woff2"); font-weight: 200 800; font-style: normal; font-display: swap; }
 :root {
   color-scheme: light;
   --paper: #f3f0e8;
@@ -9,7 +11,7 @@
   --blue: #327b99;
   --stage: #102638;
   --stage-rule: #365065;
-  --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --sans: "Atkinson Hyperlegible Next", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --serif: Iowan Old Style, Baskerville, Georgia, serif;
 }
 
@@ -143,7 +145,7 @@ select:disabled { opacity: .5; }
 .explain-cards article>span { color: var(--rust); font: 500 28px var(--serif); }.explain-cards h3 { margin: 39px 0 12px; font: 500 21px/1.2 var(--serif); }.explain-cards p { color: #6b8080; font-size: 12px; line-height: 1.7; }
 .method { padding-top: 52px; padding-bottom: 90px; }.method p { font-size: 14px; line-height: 1.75; color: #647a7c; max-width: 800px; }.method code { color: var(--rust); }.method a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: #bdc8be; }
 footer { border-top: 1px solid var(--rule); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding: 26px 0 36px; color: #7a8c87; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }.site-shell footer i { font-style: normal; color: var(--rust); }
-.loading { position: fixed; z-index: 10; bottom: 22px; right: 22px; color: #edf7f8; background: var(--stage); border-left: 1px solid var(--rust); box-shadow: 0 8px 22px #10263833; padding: 12px 16px; font-size: 12px; }.loading[hidden] { display: none; }
+.loading { position: fixed; z-index: 10; bottom: 22px; right: 22px; color: #edf7f8; background: var(--stage); border-left: 1px solid var(--rust); box-shadow: 0 8px 22px rgb(4 10 18 / .32); padding: 12px 16px; font-size: 12px; }.loading[hidden] { display: none; }
 
 /* Keep supporting information readable alongside the decision surface. */
 .hero-meta span, .control-group p, .kernel-stack button span,
@@ -268,3 +270,103 @@ body { background: var(--paper); }
   .hero-art { min-height: 270px; padding: 16px; }
   .workspace { padding-top: 48px; }
 }
+
+/* A direct comparison using the same predictions as the interactive lab. */
+.comparison-story { display: grid; grid-template-columns: minmax(240px, .8fr) minmax(0, 1.7fr); gap: clamp(32px, 5vw, 84px); align-items: center; padding: clamp(55px, 7vw, 108px) 0; border-bottom: 1px solid var(--rule); }
+.story-copy { max-width: 410px; }
+.story-label { margin: 0 0 18px; color: #345dba; font-size: 13px; font-weight: 700; }
+.story-copy h2 { margin: 0 0 22px; font-size: clamp(36px, 3.8vw, 57px); line-height: 1.04; letter-spacing: -.035em; }
+.story-copy > p:not(.story-label) { color: #435770; font-size: 16px; line-height: 1.6; }
+.story-action { display: inline-flex; gap: 28px; align-items: center; min-height: 50px; margin: 14px 0 20px; padding: 12px 17px; color: #fff; background: #173e99; border: 0; font-weight: 700; font-size: 14px; text-align: left; }
+.story-action:hover { background: #102e75; }
+.story-copy .story-note { max-width: 340px; font-size: 13px !important; }
+.story-figures { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.story-figure { min-width: 0; padding: 20px; background: #e9f0ff; }
+.story-figure-head, .story-figure figcaption { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+.story-figure-head h3 { margin: 0; font-size: 18px; }
+.story-figure-head h3 span, .story-figure-head > span, .story-figure figcaption span { color: #435c7a; font-size: 12px; font-weight: 500; }
+.story-figure svg { display: block; width: 100%; margin: 20px 0 16px; }
+.story-figure .art-grid { stroke: #a6bbd7; stroke-width: .7; opacity: .55; }
+.story-figure .art-boundary { fill: none; stroke: #1c4fc0; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.story-figure .art-point-0 { fill: #255bd8; opacity: .9; }
+.story-figure .art-point-1 { fill: #d75c30; opacity: .9; }
+.story-figure .art-label { fill: #435c7a; font: 10px var(--sans); }
+.story-figure figcaption { border-top: 1px solid #bbcbe2; padding-top: 15px; }
+.story-figure figcaption strong { color: #183b85; font-size: clamp(22px, 2vw, 30px); font-variant-numeric: tabular-nums; }
+@media (max-width: 900px) { .comparison-story { grid-template-columns: 1fr; gap: 24px; } .story-copy { max-width: 650px; } }
+@media (max-width: 600px) { .comparison-story { padding: 55px 0; } .story-figures { grid-template-columns: 1fr; } .story-figure { padding: 18px; } }
+
+/* A four-layer guided view of the fitted decision function. */
+.walkthrough { padding: clamp(65px, 7vw, 110px) 0; scroll-margin-top: 20px; }
+.walkthrough-intro { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 30px; }
+.walkthrough-intro > div > p { color: #345dba; font-size: 12px; font-weight: 750; letter-spacing: .05em; }
+.walkthrough-intro h2 { margin: 0; font-size: clamp(38px, 4.5vw, 68px); line-height: 1.02; letter-spacing: -.035em; }
+.walkthrough-intro > p { max-width: 310px; margin: 0; color: #465c75; font-size: 15px; line-height: 1.6; }
+.walkthrough-frame { background: #101b2d; color: #eaf2ff; }
+.walkthrough-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 18px 24px; border-bottom: 1px solid #34455e; }
+.walkthrough-toolbar > span { color: #aebed2; font-size: 12px; }
+.walkthrough-models { display: flex; gap: 6px; }
+.walkthrough-models button { min-height: 42px; padding: 8px 17px; border: 1px solid #53657c; background: transparent; color: #dce6f3; font-size: 14px; font-weight: 700; }
+.walkthrough-models button[aria-pressed="true"] { color: #10213c; background: #ffdc85; border-color: #ffdc85; }
+.walkthrough-models button span { font-weight: 500; }
+.walkthrough-body { display: grid; grid-template-columns: minmax(0, 1fr) 280px; min-height: 530px; }
+.walkthrough-stage { position: relative; min-width: 0; min-height: 530px; background: #102638; }
+#guide-plot { width: 100%; height: 530px; }
+.guide-controls { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; padding: 20px 24px 24px; border-bottom: 1px solid #34455e; }
+.guide-controls label { display: block; min-width: 0; color: #c4d3e4; font-size: 12px; font-weight: 650; }
+.guide-controls select, .walkthrough-point select {
+  appearance: none; color-scheme: dark; width: 100%; min-height: 48px; margin-top: 9px;
+  padding: 10px 38px 10px 14px; border: 1px solid #536b86; border-radius: 5px;
+  color: #f1f6ff; background-color: #1b2d43;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='m4 6 4 4 4-4' stroke='%23c8d9ea' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 13px center; background-size: 16px;
+  font-size: 14px; font-weight: 650; cursor: pointer;
+}
+.guide-controls select:hover:not(:disabled), .walkthrough-point select:hover { border-color: #a3b8ce; background-color: #263c56; }
+.guide-controls select:focus-visible, .walkthrough-point select:focus-visible { outline: 2px solid #ffdc85; outline-offset: 3px; }
+.walkthrough button:focus-visible, .walkthrough input:focus-visible, .guide-metrics summary:focus-visible { outline: 2px solid #ffdc85; outline-offset: 3px; }
+.guide-controls select:disabled { color: #a7b8c9; border-color: #43556b; background-color: #182638; opacity: 1; cursor: not-allowed; }
+.guide-controls select option, .walkthrough-point select option { color: #f1f6ff; background: #1b2d43; }
+.guide-kernel-note { margin: 0; padding: 0 24px 18px; color: #bdcee1; font-size: 13px; line-height: 1.5; }
+.guide-options { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 18px; padding: 12px 24px; border-bottom: 1px solid #34455e; color: #d5e3f1; font-size: 13px; }
+.guide-options label { display: flex; gap: 7px; align-items: center; min-height: 32px; }
+.guide-options input { accent-color: #ffdc85; }
+.guide-options button { min-height: 36px; padding: 7px 10px; border: 1px solid #657c95; background: transparent; color: #edf6ff; }
+.guide-options button:hover { background: #2b405b; }
+#guide-share-status { color: #d8e6f7; font-size: 12px; }
+.guide-plots { display: grid; grid-template-columns: minmax(0, 1fr); }
+.guide-plots.comparing { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.guide-plot-wrap { min-width: 0; position: relative; }
+.guide-secondary { border-left: 1px solid #34455e; }
+.guide-plot-label { position: absolute; z-index: 2; top: 14px; left: 18px; color: #e1edf5; font-size: 13px; font-weight: 700; pointer-events: none; }
+#guide-plot-b { width: 100%; height: 530px; }
+.walkthrough-gesture { position: absolute; left: 22px; bottom: 13px; margin: 0; color: #b7c9d4; font-size: 12px; pointer-events: none; }
+#guide-error { position: absolute; inset: 25% 10% auto; text-align: center; color: #fff; }
+.walkthrough-aside { padding: 30px 24px; border-left: 1px solid #34455e; }
+.walkthrough-counter { display: block; margin-bottom: 22px; color: #ffdc85; font-size: 13px; font-weight: 700; }
+.walkthrough-aside h3 { font-size: 25px; line-height: 1.12; margin-bottom: 14px; }
+.walkthrough-aside p { color: #cfdbeb; font-size: 14px; line-height: 1.5; }
+.walkthrough-result, .walkthrough-point { border-top: 1px solid #34455e; margin-top: 22px; padding-top: 18px; }
+.walkthrough-result span, .walkthrough-point label { display: block; color: #b5c7dc; font-size: 12px; font-weight: 700; }
+.walkthrough-result strong { display: block; margin: 8px 0 3px; color: #ffdc85; font-size: 34px; font-variant-numeric: tabular-nums; }
+.walkthrough-result small, .walkthrough-point small { color: #b5c7dc; font-size: 12px; line-height: 1.4; }
+.guide-metrics { margin-top: 12px; color: #dce9f5; font-size: 13px; }
+.guide-metrics summary { cursor: pointer; min-height: 32px; }
+.guide-metrics table { width: 100%; border-collapse: collapse; font-size: 12px; text-align: right; }
+.guide-metrics th, .guide-metrics td { padding: 5px; border-bottom: 1px solid #34455e; }
+.guide-metrics th:first-child { text-align: left; }
+.walkthrough-point select { margin-top: 10px; }
+.walkthrough-point p { margin: 10px 0 4px; }
+.walkthrough-bottom { display: flex; align-items: stretch; justify-content: space-between; gap: 15px; padding: 16px 24px; border-top: 1px solid #34455e; }
+.walkthrough-steps { display: flex; flex-wrap: wrap; gap: 4px; }
+.walkthrough-steps button { min-height: 44px; padding: 10px 12px; color: #b9cadd; background: transparent; border: 0; font-size: 13px; font-weight: 650; }
+.walkthrough-steps button span { margin-right: 5px; color: #8ba2bb; font-size: 11px; }
+.walkthrough-steps button[aria-pressed="true"] { color: #fff; background: #2b405b; }
+.walkthrough-steps button[aria-pressed="true"] span { color: #ffdc85; }
+.walkthrough-play { min-height: 44px; padding: 10px 16px; border: 1px solid #8596a9; background: transparent; color: #fff; font-size: 13px; font-weight: 700; white-space: nowrap; }
+.walkthrough-play:hover { background: #2b405b; }
+.walkthrough-caption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 20px; padding: 15px 24px; color: #b8c9da; border-top: 1px solid #34455e; font-size: 12px; line-height: 1.5; }
+.walkthrough-caption i { display: inline-block; width: 8px; height: 8px; margin: 0 4px 0 10px; border-radius: 50%; background: #5dbdff; }
+.walkthrough-caption i:first-child { margin-left: 0; }.walkthrough-caption i:nth-child(2) { background: #ffad70; }
+@media (max-width: 900px) { .walkthrough-body { grid-template-columns: 1fr; }.walkthrough-aside { border-left: 0; border-top: 1px solid #34455e; }.walkthrough-intro { align-items: start; flex-direction: column; }.walkthrough-intro > p { max-width: 520px; } }
+@media (max-width: 600px) { .walkthrough-toolbar, .walkthrough-bottom { padding: 14px; }.guide-controls { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 14px; }.guide-plots.comparing { grid-template-columns: 1fr; }.guide-secondary { border-left: 0; border-top: 1px solid #34455e; }.walkthrough-bottom { flex-direction: column; }.walkthrough-steps { display: grid; grid-template-columns: repeat(2, 1fr); }.walkthrough-steps button { text-align: left; }.walkthrough-play { width: 100%; }.walkthrough-stage { min-height: 400px; } #guide-plot, #guide-plot-b { height: 400px; }.walkthrough-aside { padding: 22px; }.walkthrough-caption { padding: 14px; }.walkthrough-intro h2 { font-size: 42px; } }

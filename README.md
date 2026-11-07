@@ -91,15 +91,25 @@ físicos. También se generan
 Abre [`dashboard/index.html`](dashboard/index.html) en un navegador moderno.
 Funciona localmente y sin conexión: Plotly.js está incluido en
 `dashboard/vendor/`. Arrastra para girar la superficie 3D, usa la rueda para
-acercarte o alejarte dentro de un rango corto, pasa el cursor sobre un punto o
-cambia a la vista 2D. La portada dibuja una muestra de puntos y la frontera
+acercarte o alejarte, selecciona un punto o cambia a la vista 2D.
+La portada dibuja una muestra de puntos y la frontera
 real del modelo RBF con `gamma = 1` en círculos. Los controles
 permiten elegir dataset, kernel y `gamma`, ocultar capas, destacar errores de
 prueba o vectores de soporte y comparar dos modelos con la misma cámara.
 Se pueden abrir configuraciones concretas con parámetros de URL; por ejemplo,
 [`cosine` frente a RBF en círculos](dashboard/index.html?dataset=circles&kernel=cosine&compare=rbf:1&view=2d#explore).
-El panel derecho muestra accuracy, aciertos, vectores de soporte y matriz de
-confusión de los 150 ejemplos de prueba. «Save PNG» guarda el gráfico actual.
+El panel muestra los aciertos en los 150 ejemplos de prueba, ofrece accuracy de
+entrenamiento, vectores de soporte y matriz de confusión en «More model metrics»,
+y permite inspeccionar la predicción y el score de cada punto. «Save PNG» guarda
+el gráfico principal. «Copy view link» copia la configuración del explorador;
+si se abre desde el archivo local o localhost, el enlace solo sirve en ese equipo.
+
+El explorador presenta cuatro capas: puntos, frontera, superficie y vectores de
+soporte. Permite elegir entre los dos conjuntos, los seis kernels y los valores de
+gamma, comparar dos modelos, elegir un punto de prueba con el teclado o pulsar un
+punto en la escena, y reproducir o detener el recorrido. Los puntos se proyectan sobre el
+plano de score cero; su altura en la escena no representa un atributo de entrada.
+La superficie usa el score precomputado y se recorta solo para la representación.
 
 `dashboard/build_data.py` genera `data.json` y `data.js` directamente de
 `experiment.py`, con las predicciones y la función de decisión de los modelos.
@@ -186,3 +196,7 @@ general. Los datasets son sintéticos y bidimensionales; esto no es un
 benchmark real ni una recomendación universal de hiperparámetros. Ningún
 kernel gana siempre. Para sacar conclusiones sobre datos reales harían falta
 datos del problema, validación repetida y ajuste dentro de entrenamiento.
+
+## Typography
+
+The dashboard uses Atkinson Hyperlegible Next, self-hosted in [`dashboard/fonts/`](dashboard/fonts/) under the SIL Open Font License 1.1 ([`OFL.txt`](dashboard/fonts/OFL.txt)). It was chosen because its letterforms and numerals are built to be told apart, and the page is read through its figures.

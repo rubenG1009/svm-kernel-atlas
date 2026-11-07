@@ -1,8 +1,8 @@
 """Mathematical and export checks for the additional SVM kernels."""
 
 import json
-import re
 import sys
+from html.parser import HTMLParser
 from pathlib import Path
 
 import numpy as np
@@ -12,6 +12,24 @@ sys.path.insert(0, str(ROOT))
 
 from dashboard.build_data import export_dataset  # noqa: E402
 from experiment import datasets, fit_model, rational_quadratic_kernel, split_data  # noqa: E402
+
+
+class KernelOptions(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.in_kernel_select = False
+        self.values = set()
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if tag == "select" and attrs.get("id") == "guide-kernel":
+            self.in_kernel_select = True
+        elif tag == "option" and self.in_kernel_select:
+            self.values.add(attrs.get("value"))
+
+    def handle_endtag(self, tag):
+        if tag == "select":
+            self.in_kernel_select = False
 
 
 def test_custom_kernel_formulas_and_gram_matrices():
@@ -48,8 +66,9 @@ def test_dashboard_export_matches_current_models():
     assert json.loads(javascript.removeprefix("window.SVM_DATA = ").removesuffix(";\n")) == exported
     report = json.loads((ROOT / "output" / "metrics.json").read_text(encoding="utf-8"))
     html = (ROOT / "dashboard" / "index.html").read_text(encoding="utf-8")
-    selected_kernels = set(re.findall(r'data-kernel="([a-z_]+)"', html))
-    assert selected_kernels == {"linear", "rbf", "poly", "laplacian", "rational_quadratic", "cosine"}
+    choices = KernelOptions()
+    choices.feed(html)
+    assert choices.values == {"linear", "rbf", "poly", "laplacian", "rational_quadratic", "cosine"}
     for name, (X, y) in datasets().items():
         current = export_dataset(name, X, y)
         assert current == exported["datasets"][name]

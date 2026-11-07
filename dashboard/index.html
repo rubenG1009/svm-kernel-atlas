@@ -5,17 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101b2d">
   <meta name="description" content="Explore how SVM kernels change decision surfaces on synthetic circles and moons. Rotate the 3D model and compare held-out results.">
-  <title>SVM Decision Surface Lab · Rubén García</title>
+  <title>SVM Kernel Atlas · Rubén García</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <script defer src="vendor/plotly.min.js"></script>
   <script defer src="data.js"></script>
   <script defer src="app.js"></script>
+  <script defer src="walkthrough.js"></script>
 </head>
 <body>
   <div class="site-shell">
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="SVM Decision Surface Lab, back to top">
+      <a class="brand" href="#top" aria-label="SVM Kernel Atlas, back to top">
         <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
         <span>SVM <strong>ATLAS</strong></span>
       </a>
@@ -26,51 +27,51 @@
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="hero-intro">An interactive guide to support vector machines</p>
-          <h1 id="hero-title">One dataset.<br><em>Six kernels.</em></h1>
-          <p>Explore how six SVM kernels classify the same points. Rotate the decision surface, change the model and compare the results.</p>
-          <a class="hero-action" href="#explore">Start exploring <span aria-hidden="true">↓</span></a>
+          <h1 id="hero-title">What makes a <br><em>boundary bend?</em></h1>
+          <p>An interactive study of support vector machines: see how six kernels draw different boundaries around the same data. Explore the decision surface, one layer at a time.</p>
+          <a class="hero-action" href="#explore">Explore the surface <span aria-hidden="true">↓</span></a>
           <div class="hero-meta"><span><b>2</b> datasets</span><span><b>6</b> kernels</span><span><b>1</b> fixed split</span></div>
         </div>
         <figure class="hero-art" aria-label="Actual zero-score boundary and a sample of points from the circles RBF model"><div class="hero-art-top"><span>FIG. 01</span><span>RBF / CIRCLES</span></div><svg id="hero-plot" viewBox="0 0 440 320" role="img" aria-label="Circular SVM boundary among synthetic points"></svg><figcaption><span>Decision boundary at score = 0</span><span>γ = 1.0</span></figcaption></figure>
       </section>
 
-      <section class="workspace" id="explore" aria-labelledby="explore-title">
-        <div class="section-heading"><div><span class="section-index">01 <span>/</span> THE INSTRUMENT</span><h2 id="explore-title">A different lens on the same data.</h2></div><p id="view-instructions">Drag to orbit <span>↗</span> Scroll to zoom <span>↗</span> Hover to inspect</p></div>
-        <div class="workspace-grid">
-          <aside class="panel controls" aria-label="Experiment controls">
-            <div class="panel-heading"><span class="panel-kicker">EXPERIMENT SETTINGS</span><span class="panel-id">A</span></div>
-            <div class="control-group"><h3>Dataset</h3><div class="segmented" role="group" aria-label="Dataset"><button type="button" data-dataset="circles" class="active" aria-pressed="true">Circles</button><button type="button" data-dataset="moons" aria-pressed="false">Moons</button></div><p>500 two-dimensional samples each.</p></div>
-            <div class="control-group"><h3>Kernel</h3><div class="kernel-stack" role="group" aria-label="Kernel"><button type="button" data-kernel="linear">Linear <span>straight</span></button><button type="button" data-kernel="rbf" class="active">RBF <span>Euclidean²</span></button><button type="button" data-kernel="poly">Polynomial <span>degree 3</span></button><button type="button" data-kernel="laplacian">Laplacian <span>Manhattan</span></button><button type="button" data-kernel="rational_quadratic">Rational quadratic <span>multi-scale</span></button><button type="button" data-kernel="cosine">Cosine <span>direction</span></button></div><p id="kernel-explainer">RBF compares squared Euclidean distances, creating local curved regions.</p></div>
-            <div class="control-group"><label for="gamma">Gamma <span class="hint">distance-based / polynomial</span></label><select id="gamma"><option value="0.1">0.1 · low</option><option value="1" selected>1 · medium</option><option value="10">10 · high</option></select><p>Gamma has a different effect in each kernel; C stays at 1.</p></div>
-            <div class="control-group"><h3>View</h3><div class="segmented" role="group" aria-label="Chart view"><button type="button" data-view="3d" class="active" aria-pressed="true">3D orbit</button><button type="button" data-view="2d" aria-pressed="false">2D map</button></div></div>
-            <div class="control-group switch-list"><label><input type="checkbox" id="show-surface" checked><span>Decision surface</span></label><label><input type="checkbox" id="show-train" checked><span>Training points</span></label><label><input type="checkbox" id="show-test" checked><span>Test points</span></label><label><input type="checkbox" id="show-errors"><span>Highlight test errors</span></label><label><input type="checkbox" id="show-support"><span>Support vectors</span></label></div>
-            <div class="control-group compare-controls"><label class="compare-switch"><input type="checkbox" id="compare"><span>Compare two models</span></label><div id="compare-options" hidden><label for="compare-kernel">Compare against</label><select id="compare-kernel"><option value="linear" selected>Linear</option><option value="rbf:0.1">RBF · gamma 0.1</option><option value="rbf:1">RBF · gamma 1</option><option value="rbf:10">RBF · gamma 10</option><option value="poly:0.1">Polynomial · gamma 0.1</option><option value="poly:1">Polynomial · gamma 1</option><option value="poly:10">Polynomial · gamma 10</option><option value="laplacian:0.1">Laplacian · gamma 0.1</option><option value="laplacian:1">Laplacian · gamma 1</option><option value="laplacian:10">Laplacian · gamma 10</option><option value="rational_quadratic:0.1">Rational quadratic · gamma 0.1</option><option value="rational_quadratic:1">Rational quadratic · gamma 1</option><option value="rational_quadratic:10">Rational quadratic · gamma 10</option><option value="cosine">Cosine</option></select><p>Both views share the same dataset and camera.</p></div></div>
-          </aside>
-
-          <div class="panel visual-panel">
-            <div class="visual-toolbar"><div><span class="panel-kicker">FIG. 02 <span>/</span> DECISION SPACE</span><h3 id="chart-title">Circles · RBF, γ 1</h3></div><div class="toolbar-actions"><button type="button" id="reset-camera" title="Reset 3D camera">Reset view</button><button type="button" id="export-image" title="Download current chart as PNG">Save PNG</button></div></div>
-            <div class="plot-grid" id="plot-grid"><div class="plot-unit"><span class="plot-label">SELECTED MODEL</span><div id="plot-a" class="plot" role="img" aria-label="Interactive decision surface for the selected SVM model"></div></div><div class="plot-unit secondary" id="secondary-unit" hidden><span class="plot-label">COMPARISON</span><div id="plot-b" class="plot" role="img" aria-label="Interactive decision surface for the comparison SVM model"></div></div></div>
-            <div class="chart-foot"><div class="legend"><span><i class="dot blue"></i> Class 0</span><span><i class="dot orange"></i> Class 1</span><span><i class="ring"></i> Test point</span><span><i class="line"></i> Score = 0</span></div><span class="chart-note" id="chart-note">Height = signed decision score, clipped at ±2.2</span></div>
+      <section class="walkthrough" id="explore" aria-labelledby="walkthrough-title">
+        <span id="walkthrough"></span>
+        <div class="walkthrough-intro"><div><h2 id="walkthrough-title">Take the decision<br>apart.</h2></div><p>Follow the same observations from a flat plane to a fitted decision surface. Switch kernels at any point.</p></div>
+        <div class="walkthrough-frame">
+          <div class="walkthrough-toolbar"><div class="walkthrough-models" role="group" aria-label="Dataset"><button type="button" data-guide-dataset="circles" aria-pressed="true">Circles</button><button type="button" data-guide-dataset="moons" aria-pressed="false">Moons</button></div><span>500 synthetic points · seed 42</span></div>
+          <div class="guide-controls"><label>Kernel <select id="guide-kernel"><option value="linear">Linear</option><option value="rbf" selected>RBF</option><option value="poly">Polynomial</option><option value="laplacian">Laplacian</option><option value="rational_quadratic">Rational quadratic</option><option value="cosine">Cosine</option></select></label><label>Gamma <select id="guide-gamma"><option value="0.1">0.1 · low</option><option value="1" selected>1 · medium</option><option value="10">10 · high</option></select></label><label>View <select id="guide-view"><option value="3d">3D surface</option><option value="2d">2D map</option></select></label><label>Compare against <select id="guide-compare"><option value="">None</option><option value="linear">Linear</option><option value="rbf:0.1">RBF · γ 0.1</option><option value="rbf:1">RBF · γ 1</option><option value="rbf:10">RBF · γ 10</option><option value="poly:0.1">Polynomial · γ 0.1</option><option value="poly:1">Polynomial · γ 1</option><option value="poly:10">Polynomial · γ 10</option><option value="laplacian:0.1">Laplacian · γ 0.1</option><option value="laplacian:1">Laplacian · γ 1</option><option value="laplacian:10">Laplacian · γ 10</option><option value="rational_quadratic:0.1">Rational quadratic · γ 0.1</option><option value="rational_quadratic:1">Rational quadratic · γ 1</option><option value="rational_quadratic:10">Rational quadratic · γ 10</option><option value="cosine">Cosine</option></select></label></div>
+          <p class="guide-kernel-note" id="guide-kernel-note" aria-live="polite"></p>
+          <div class="guide-options"><label><input type="checkbox" id="guide-train" checked> Training points</label><label><input type="checkbox" id="guide-test" checked> Test points</label><label><input type="checkbox" id="guide-errors"> Highlight test errors</label><button type="button" id="guide-reset">Reset view</button><button type="button" id="guide-export">Save PNG</button><button type="button" id="guide-share">Copy view link</button><span id="guide-share-status" role="status" aria-live="polite"></span></div>
+          <div class="walkthrough-bottom"><div class="walkthrough-steps" role="group" aria-label="Decision layers"><button type="button" data-guide-step="0" aria-pressed="false"><span>01</span> Points</button><button type="button" data-guide-step="1" aria-pressed="false"><span>02</span> Boundary</button><button type="button" data-guide-step="2" aria-pressed="true"><span>03</span> Surface</button><button type="button" data-guide-step="3" aria-pressed="false"><span>04</span> Support</button></div><button type="button" class="walkthrough-play" id="guide-play">Play the tour <span aria-hidden="true">▶</span></button></div>
+          <div class="walkthrough-body">
+            <div class="walkthrough-stage"><div class="guide-plots" id="guide-plots"><div class="guide-plot-wrap"><span class="guide-plot-label" id="guide-primary-label">RBF · γ 1</span><div id="guide-plot" role="img" aria-label="Decision layers for the selected model" aria-describedby="guide-caption"></div></div><div class="guide-plot-wrap guide-secondary" id="guide-secondary" hidden><span class="guide-plot-label" id="guide-secondary-label">Comparison</span><div id="guide-plot-b" role="img" aria-label="Decision layers for the comparison model" aria-describedby="guide-caption"></div></div></div><p class="walkthrough-gesture" id="guide-gesture">Drag to rotate · scroll to zoom</p><div id="guide-error" role="status" hidden></div></div>
+            <aside class="walkthrough-aside"><span class="walkthrough-counter" id="guide-counter">03 / 04</span><h3 id="guide-title">Reveal the surface.</h3><p id="guide-description">Height is the model’s decision score, not a third input feature.</p><div class="walkthrough-result"><span>HELD-OUT RESULT</span><strong id="guide-score">—</strong><small id="guide-score-detail">correct predictions on 150 test points</small><p id="guide-comparison-result" hidden></p><details class="guide-metrics"><summary>More model metrics</summary><p id="guide-extra-metrics"></p><table aria-label="Confusion matrix for the test set"><thead><tr><th>Actual / predicted</th><th>Class 0</th><th>Class 1</th></tr></thead><tbody><tr><th>Class 0</th><td id="guide-m00"></td><td id="guide-m01"></td></tr><tr><th>Class 1</th><td id="guide-m10"></td><td id="guide-m11"></td></tr></tbody></table></details></div><div class="walkthrough-point"><label for="guide-point">Inspect a test point</label><select id="guide-point"></select><p id="guide-point-detail" aria-live="polite"></p><small>Or click a point in the scene.</small></div></aside>
           </div>
+          <div class="walkthrough-caption"><span><i></i> Class 0 <i></i> Class 1 · outlined = test</span><span id="guide-caption">Height is the decision score, not a third input feature. Surface clipped at ±2.2.</span></div>
+        </div>
+      </section>
 
-          <aside class="panel results" aria-label="Model results">
-            <div class="panel-heading"><span class="panel-kicker">EVIDENCE LEDGER</span><span class="panel-id">B</span></div>
-            <div class="primary-stat"><span>HELD-OUT ACCURACY</span><strong id="test-accuracy">96.7%</strong><small id="correct-count">145 / 150 correct</small></div>
-            <div class="metric-pair"><div><span>TRAIN ACCURACY</span><strong id="train-accuracy">98.0%</strong></div><div><span>SUPPORT VECTORS</span><strong id="support-count">60</strong></div></div>
-            <div class="readout-block"><div class="block-title"><h3>Confusion matrix</h3><span>test only</span></div><div class="matrix" id="confusion-matrix" aria-label="Confusion matrix for held-out test samples"></div><div class="matrix-caption">Rows: true class · columns: predicted class</div></div>
-            <div class="readout-block" id="comparison-readout" hidden><div class="block-title"><h3>Comparison</h3><span>same test points</span></div><p id="comparison-text"></p></div>
-            <div class="readout-block inspect"><div class="block-title"><h3>Inspect a point</h3><span>hover plot</span></div><p id="point-detail">Hover a blue or orange point to inspect its true class, prediction, split and decision score.</p></div>
-          </aside>
+      <section class="comparison-story" id="comparison-story" aria-labelledby="story-title">
+        <div class="story-copy">
+          <p class="story-label">A closer look · circles</p>
+          <h2 id="story-title">Same points.<br>Different boundaries.</h2>
+          <p>A straight line struggles to separate a ring from its center. A curved boundary can follow the shape of the data.</p>
+          <button class="story-action" id="try-comparison" type="button">Explore this comparison <span aria-hidden="true">↗</span></button>
+          <p class="story-note">Plots show a sample of 100 points; scores use all 150 test points. One fixed synthetic split, not a general benchmark.</p>
+        </div>
+        <div class="story-figures" aria-label="Comparison of linear and RBF models on the circles dataset">
+          <figure class="story-figure"><div class="story-figure-head"><h3>Linear</h3><span>Straight boundary</span></div><svg id="story-linear" viewBox="0 0 440 320" role="img" aria-label="Linear decision boundary and circles data"></svg><figcaption><strong id="story-linear-score">—</strong><span>correct on test set</span></figcaption></figure>
+          <figure class="story-figure"><div class="story-figure-head"><h3>RBF <span>γ = 1</span></h3><span>Curved boundary</span></div><svg id="story-rbf" viewBox="0 0 440 320" role="img" aria-label="RBF decision boundary and circles data"></svg><figcaption><strong id="story-rbf-score">—</strong><span>correct on test set</span></figcaption></figure>
         </div>
       </section>
 
       <section class="explain-grid" id="how-to-read" aria-labelledby="read-title">
-        <div><span class="section-index">02 <span>/</span> HOW TO READ IT</span><h2 id="read-title">The third axis is the model’s answer.</h2><p>These are two-dimensional datasets. The surface height shows the signed SVM decision score at each location. Its zero crossing produces the classification boundary on the floor.</p></div>
+        <div><h2 id="read-title">The third axis is the model’s answer.</h2><p>These are two-dimensional datasets. The surface height shows the signed SVM decision score at each location. Its zero crossing produces the classification boundary on the floor.</p></div>
         <div class="explain-cards"><article><span>01</span><h3>Dots are observations</h3><p>Filled dots trained the model. Open rings were held out for testing. Their positions never change between models.</p></article><article><span>02</span><h3>The surface is computed</h3><p>Every rise and dip comes from the fitted decision function. The displayed height is clipped at ±2.2 so the scale remains readable.</p></article><article><span>03</span><h3>One split, one observation</h3><p>The accuracy figures describe this fixed split. They are not a general performance estimate or a claim that one kernel always wins.</p></article></div>
       </section>
 
-      <section class="method" id="method" aria-labelledby="method-title"><div><span class="section-index">03 <span>/</span> METHOD NOTES</span><h2 id="method-title">Built to be checked.</h2></div><div><p>Each dataset has 500 synthetic observations. A stratified 70/30 split with seed 42 is reused across models. StandardScaler is fitted only on training data; SVC uses C = 1 and polynomial degree 3. Laplacian uses Manhattan distance; rational quadratic uses α = 1; cosine compares direction after scaling. The model data, point predictions, surfaces, boundaries and readouts are generated from <code>experiment.py</code>.</p><p>Use the dashboard to ask questions, then inspect the <a href="../experiment.py">source code</a>, <a href="../output/metrics.json">metrics</a> and <a href="../README.md">experiment notes</a>.</p></div></section>
+      <section class="method" id="method" aria-labelledby="method-title"><div><h2 id="method-title">Built to be checked.</h2></div><div><p>Each dataset has 500 synthetic observations. A stratified 70/30 split with seed 42 is reused across models. StandardScaler is fitted only on training data; SVC uses C = 1 and polynomial degree 3. Laplacian uses Manhattan distance; rational quadratic uses α = 1; cosine compares direction after scaling. The model data, point predictions, surfaces, boundaries and readouts are generated from <code>experiment.py</code>.</p><p>Use the dashboard to ask questions, then inspect the <a href="../experiment.py">source code</a>, <a href="../output/metrics.json">metrics</a> and <a href="../README.md">experiment notes</a>.</p></div></section>
     </main>
     <footer><span>SVM ATLAS <i>—</i> SURFACE STUDY 001</span><span>Rubén García · Synthetic learning experiment</span><span>Local interactive edition</span></footer>
   </div>
